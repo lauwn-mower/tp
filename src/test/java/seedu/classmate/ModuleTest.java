@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains unit tests for the Module class.
+ * Tests for empty module codes and whether all modules are unique.
+ */
 class ModuleTest {
 
     @Test

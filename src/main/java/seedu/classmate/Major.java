@@ -3,18 +3,30 @@ package seedu.classmate;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * Represents the CEG major requirements.
+ * Stores and manages a list of core modules required to fulfil the major.
+ */
 public class Major {
 
-    // Store major requirements as a list of Module objects
+    /** Store major requirements as a list of Module objects */
     private ArrayList<Module> coreModules;
 
-    // Construct CEGMajor object
+    /**
+     * Constructs a {@code Major} object and initializes list
+     * of core modules required for CEG major.
+     */
     public Major() {
         this.coreModules = new ArrayList<>();
         setupCEGModules();
     }
 
-    // Print moduleList using cegMajor.toString()
+    /**
+     * Returns a formatted string containing the list of core modules
+     * required to fulfil the CEG major.
+     *
+     * @return A string listing all core modules.
+     */
     @Override
     public String toString() {
         if (coreModules.isEmpty()) {
@@ -30,7 +42,9 @@ public class Major {
         return moduleListHeader + moduleList;
     }
 
-    // Setup coreModule list by hardcoding the construction of modules
+    /**
+     * Initializes the list of core modules and their prerequisites for CEG major.
+     */
     private void setupCEGModules() {
         // Initialise Module objects
         Module ma1511 = new Module("MA1511", "Engineering Calculus");
