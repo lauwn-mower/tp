@@ -25,33 +25,52 @@ public class ClassMate {
         while (true) {
             String input = in.nextLine();
             assert input != null : "Input should not be null";
-            logger.info("User input: " + input);
+            //logger.info("User input: " + input);
             try {
-                Command command = Parser.parse(input);
-                assert command != null : "Command should not be null";
-                switch (command.getCommandWord()) {
+                String trimmedInput = input.trim();
+                assert trimmedInput != null : "Command should not be null";
+                String commandWord = trimmedInput.split("\\s+")[0];
+                String arguments = trimmedInput.length() > commandWord.length()
+                        ? input.trim().substring(commandWord.length()).trim()
+                        : "";
+
+                switch (commandWord) {
                 case "help":
-                    printHelp();
+                    Parser.displayHelp();
                     break;
+
                 case "bye":
                     goodbyeMessage();
                     logger.info("ClassMate application exited.");
                     return;
+
                 case "viewGradReq":
                     System.out.println(major);
                     break;
+
                 case "prereq":
-                    String moduleCode = command.getArgs();
-                    assert moduleCode != null : "Module code should not be null";
-                    logger.info("Fetching prereqs for: " + moduleCode);
-                    Module module = major.findModule(moduleCode);
-                    System.out.println(module.printPrereqTree(major));
+                    if (arguments.isEmpty()) {
+                        throw new ClassMateException("Please provide a module code. Format: prereq <module code>");
+                    }
+                    // assert arguments != null : "Module code should not be null";
+                    logger.info("Fetching prereqs for: " + arguments);
+                    Module module = major.findModule(arguments);
+                    if (module != null) {
+                        System.out.println(module.printPrereqTree(major));
+                    } else {
+                        System.out.println("Module " + arguments + " not found.");
+                    }
                     break;
-                case "printmoduleinfo":
-                    String[] moduleCodes = command.getArgs().split("\\s+");
+
+                case "printModuleInfo":
+                    if (arguments.isEmpty()) {
+                        throw new ClassMateException("Please provide a module code. " +
+                                "Format: printModuleInfo <module code>");
+                    }
+                    String[] moduleCodes = arguments.split("\\s+");
                     assert moduleCodes.length > 0 : "Module codes should not be empty";
-                    logger.info("Printing module info for: " + command.getArgs());
-                    System.out.println("Module Info for " + command.getArgs());
+                    logger.info("Printing module info for: " + arguments);
+                    System.out.println("Module Info for " + arguments);
                     for (String code : moduleCodes) {
                         Module m = major.findModule(code.trim());
                         if (m != null) {
@@ -61,9 +80,10 @@ public class ClassMate {
                         }
                     }
                     break;
-                case "querymoduleavailability":
-                    String[] availArgs = command.getArgs().split("\\s+");
-                    logger.info("Checking availability for: " + command.getArgs());
+
+                case "queryModuleAvailability":
+                    String[] availArgs = arguments.split("\\s+");
+                    logger.info("Checking availability for: " + arguments);
                     if (availArgs.length < 2) {
                         throw new ClassMateException("Format: queryModuleAvailability <module code> <sem1/sem2>");
                     }
@@ -75,17 +95,24 @@ public class ClassMate {
                         System.out.println("Module " + availArgs[0] + " not found.");
                     }
                     break;
+
                 case "specialisations":
                     System.out.println("Listing all specifications:");
                     break;
+
                 case "specialisation":
-                    String specialisationName = command.getArgs();
-                    assert specialisationName != null : "Specialisation name should not be null";
-                    logger.info("Fetching specialisation: " + specialisationName);
-                    System.out.println("Listing details for " + specialisationName + "\n");
-                    Specialisation spec = new Specialisation(specialisationName);
+                    if (arguments.isEmpty()) {
+                        System.out.println("Please provide a specialisation name. " +
+                                "Format: specialisations_info <specialisation name>");
+                        break;
+                    }
+                    assert arguments != null : "Specialisation name should not be null";
+                    logger.info("Fetching specialisation: " + arguments);
+                    System.out.println("Listing details for " + arguments + "\n");
+                    Specialisation spec = new Specialisation(arguments);
                     System.out.println(spec);
                     break;
+
                 default:
                     throw new ClassMateException("Unknown command.");
                 }
@@ -94,28 +121,6 @@ public class ClassMate {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    /**
-     * Prints the list of ClassMate commands and their descriptions
-     * to help users on how to use the application
-     */
-    private static void printHelp() {
-        System.out.println("List of commands:");
-        System.out.println("Command: view grad req");
-        System.out.println("- Print CEG graduation requirements");
-        System.out.println("Command: prereq <module code>");
-        System.out.println("- Show prerequisites for a module");
-        System.out.println("Command: printModuleInfo <module code(s)>");
-        System.out.println("- Show information for one or more modules");
-        System.out.println("Command: queryModuleAvailability <module code> <sem1/sem2>");
-        System.out.println("- Check if a module is available in a specific semester");
-        System.out.println("Command: specialisations");
-        System.out.println("- List all CEG specialisations");
-        System.out.println("Command: specialisation <name>");
-        System.out.println("- Show detailed info for a specialisation");
-        System.out.println("Command: bye");
-        System.out.println("- Exit ClassMate");
     }
 
     private static void goodbyeMessage() {
