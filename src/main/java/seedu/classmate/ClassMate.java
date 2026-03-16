@@ -40,6 +40,9 @@ public class ClassMate {
                     Parser.displayHelp();
                     break;
 
+                case "":
+                    throw new ClassMateException("Please input a non-empty command!");
+
                 case "bye":
                     goodbyeMessage();
                     logger.info("ClassMate application exited.");

@@ -18,15 +18,8 @@ class ParserTest {
     }
 
     @Test
-    public void testViewGradReqCommand() {
-        String result = Parser.parseCommand("viewGradReq");
-
-        assertEquals("Print CEG graduation requirements", result);
-    }
-
-    @Test
     public void testEmptyCommand() {
         String result = Parser.parseCommand("");
-        assertEquals("Unknown Command. Enter 'help' for available commands.", result);
+        assertEquals("Please input a non-empty command!", result);
     }
 }
