@@ -24,21 +24,19 @@ public class Specialisation {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(specialisationName);
 
         if (!specialisationCoreModules.isEmpty()) {
-            sb.append("Core Specialisation Modules:\n");
+            sb.append("Core Specialisation Modules:\n\n");
             sb.append(specialisationCoreModules.stream()
-                .map(Module::toString)
+                .map(Module::printInfo)
                 .collect(Collectors.joining("\n")));
-
             sb.append("\n\n");
         }
 
         sb.append("Elective Modules (").append(electiveRequirements).append(")\n");
 
         sb.append(specialisationElectiveModules.stream()
-                .map(Module::toString)
+                .map(Module::printInfo)
                 .collect(Collectors.joining("\n")));
 
         return sb.toString();
