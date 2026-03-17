@@ -47,10 +47,10 @@ public class Parser {
         case "bye":
             return new ByeCommand();
 
-        case "viewGradReq":
+        case "viewGradReqs":
             return new ViewGradReqCommand();
 
-        case "prereq":
+        case "viewPrereqs":
             return new PrereqCommand(args);
 
         case "printModuleInfo":
@@ -59,10 +59,10 @@ public class Parser {
         case "queryModuleAvailability":
             return new QueryModuleAvailabilityCommand(args);
 
-        case "specialisations":
+        case "viewSpecialisations":
             return new SpecialisationsCommand();
 
-        case "specialisation":
+        case "viewSpecialisationInfo":
             return new SpecialisationInfoCommand(args);
 
         default:
@@ -75,16 +75,18 @@ public class Parser {
      * to help users on how to use the application
      */
     public static void displayHelp() {
-        System.out.println("Available commands:");
-        System.out.println("- help: Viewing help");
-        System.out.println("- viewGradReq: Print CEG graduation requirements: " +
-                "view course requirements and specialisations");
-        System.out.println("- printModuleInfo: Print module info: show details for a specific module");
-        System.out.println("- queryModuleAvailability: Query module availability: " +
-                "Boolean return yes or no if module can be taken in a certain semester");
-        System.out.println("- specialisations: Print CEG specialisations: " +
-                "view list of specialisations");
-        System.out.println("- specialisationInfo <index>: Print CEG specialisations info: " +
-                "view course specialisations and requirements in more detail");
+        System.out.println("Available commands:\n" +
+                "- help: " +
+                "Viewing help\n" +
+                "- viewGradReqs: " +
+                "Print CEG graduation requirements\n" +
+                "- viewModuleInfo MODULE_CODE: " +
+                "Show details for a specific module\n" +
+                "- queryModuleAvailability MODULE_CODE SEM<1/2>: " +
+                "Check if a module MODULE_CODE is available in a certain semester SEM<1/2>\n" +
+                "- viewSpecialisations: " +
+                "View list of all CEG specialisations\n" +
+                "- viewSpecialisationInfo SPECIALISATION_INDEX: " +
+                "View specific requirements for a specialisation. See viewSpecialisation for index");
     }
 }
