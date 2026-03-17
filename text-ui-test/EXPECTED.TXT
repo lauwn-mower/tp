@@ -9,13 +9,12 @@ I'm your CEG course planning assistant!
 Type 'help' to see available commands.
 Available commands:
 - help: Viewing help
-- view: Print CEG graduation requirements: view course requirements and specialisations
-- check: Query for module prerequisites: check what prerequisites are needed to take the module
-- show: Print module info: show details for a specific module
-- query: Query module availability: Boolean return yes or no if module can be taken in a certain semester
+- viewGradReq: Print CEG graduation requirements: view course requirements and specialisations
+- printModuleInfo: Print module info: show details for a specific module
+- queryModuleAvailability: Query module availability: Boolean return yes or no if module can be taken in a certain semester
 - specialisations: Print CEG specialisations: view list of specialisations
-- specialisations_info: Print CEG specialisations info: view course specialisations and requirements in more detail
-Unknown command.
+- specialisationInfo <index>: Print CEG specialisations info: view course specialisations and requirements in more detail
+Unknown command. Enter 'help' for available commands.
 Here is a list of modules required to fulfill CEG Major: MA1511 Engineering Calculus
 MA1512 Differential Equations for Engineering
 MA1508E Linear Algebra for Engineering
