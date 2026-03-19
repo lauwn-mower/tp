@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class ClassMate {
     private static final Logger logger = Logger.getLogger(ClassMate.class.getName());
-    private static final Display display = new Display();
+    private static final Ui ui = new Ui();
 
     /**
      * Main entry-point for the java.classmate.Classmate application.
@@ -17,7 +17,7 @@ public class ClassMate {
 
         assert false : "dummy assertion set to fail";
 
-        display.showWelcome();
+        ui.showWelcome();
         logger.info("ClassMate application started.");
         Scanner in = new Scanner(System.in);
         Major major = new Major();
@@ -37,8 +37,7 @@ public class ClassMate {
                 }
 
             } catch (ClassMateException e) {
-                logger.warning("ClassMateException: " + e.getMessage());
-                System.out.println(e.getMessage());
+                ui.showError(e.getMessage());
             }
         }
     }
