@@ -14,20 +14,24 @@ public class ClassMate {
      * Main entry-point for the java.classmate.Classmate application.
      */
     public static void main(String[] args) {
-
-        assert false : "dummy assertion set to fail";
-
         ui.showWelcome();
         logger.info("ClassMate application started.");
+
         Scanner in = new Scanner(System.in);
         Major major = new Major();
         SpecialisationOverview specOverview = new SpecialisationOverview();
-        assert major != null : "Major should not be null";
-        while (true) {
 
         boolean isExit = false; // Flag to determine whether to exit Program
 
         while (!isExit) {
+            /* TODO: to let input reading be handled by Parser class
+             *    Alternatively, have a CommandManager to detect commandWord
+             *    and return new XCommand subclasses
+            */
+            // Guard clause to check if there's a new line before reading it
+            if (!in.hasNextLine()) {
+                break;
+            }
             String input = in.nextLine();
             assert input != null : "Input should not be null";
             logger.info("User input: " + input);
