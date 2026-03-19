@@ -9,11 +9,8 @@ import seedu.classmate.Ui;
  */
 public class ByeCommand extends Command {
 
-    public static Ui ui;
-    boolean isExit = false;
-
     public ByeCommand() {
-        isExit = true;
+        this.isExit = true; // Sthis.isExit is inherited from Command
     }
 
     /**
@@ -25,6 +22,6 @@ public class ByeCommand extends Command {
      */
     @Override
     public void executeCommand(Major major, Ui ui, SpecialisationOverview specialisationOverview) {
-        ui.showGoodbye();
+        Ui.showGoodbye();
     }
 }
