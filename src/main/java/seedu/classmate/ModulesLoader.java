@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 
 public class ModulesLoader {
     private static final String CORE_MODULES_PATH = "./data/core-modules.txt";
@@ -54,9 +55,52 @@ public class ModulesLoader {
                 modules.add(module);
             }
         } catch (FileNotFoundException e) {
-            throw new ClassMateException("The core modules files does not exist");
+            throw new ClassMateException("The core modules file does not exist");
         }
 
         return modules;
+    }
+
+    public HashMap<String, ArrayList<Module>> loadSpecialisationModules() throws ClassMateException {
+        HashMap<String, ArrayList<Module>> specialisationMap = new HashMap<>();
+        File file = new File(SPECIALISATION_MODULES_PATH);
+
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNext()) {
+                String line = scanner.nextLine().trim();
+
+                if (line.isEmpty()) {
+                    continue;
+                }
+
+                String[] tokens = line.split(",");
+                // assert statement
+
+                String specialisationName = tokens[0];
+                String moduleType = tokens[1];
+                String moduleName = tokens[2];
+                String moduleCode = tokens[3];
+                String semester = tokens[4];
+                String prerequisites = tokens[5];
+
+                specialisationMap.putIfAbsent(specialisationName, new ArrayList<>());
+
+                Module module = new Module(moduleCode, moduleName);
+                module.setSemester(semester);
+
+                if (!prerequisites.equals("None")) {
+                    String[] prerequisiteCodes = prerequisites.split("\\|");
+                    for (String prerequisiteCode : prerequisiteCodes) {
+                        module.addPrerequisite(prerequisiteCode);
+                    }
+                }
+
+                specialisationMap.get(specialisationName).add(module);
+
+            }
+        } catch (FileNotFoundException e) {
+            throw new ClassMateException("The specialisation modules file does not exist");
+        }
     }
 }
