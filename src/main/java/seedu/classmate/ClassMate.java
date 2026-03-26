@@ -8,11 +8,13 @@ import java.util.logging.Logger;
 public class ClassMate {
     private static final Logger logger = Logger.getLogger(ClassMate.class.getName());
     private static final Ui ui = new Ui();
+    private static final ModulesLoader modulesLoader = new ModulesLoader();
 
     /**
      * Main entry-point for the java.classmate.Classmate application.
      */
     public static void main(String[] args) {
+        modulesLoader.ensureDataFilesExist();
         ui.showWelcome();
         logger.info("ClassMate application started.");
 
