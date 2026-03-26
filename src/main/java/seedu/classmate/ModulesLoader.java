@@ -22,8 +22,8 @@ public class ModulesLoader {
         }
     }
 
-    public static ArrayList<Module> loadCoreModules() throws ClassMateException {
-        ArrayList<Module> modules = new ArrayList<>();
+    public ArrayList<Module> loadCoreModules() throws ClassMateException {
+        ArrayList<Module> coreModulesArrayList = new ArrayList<>();
         File file = new File(CORE_MODULES_PATH);
 
         try {
@@ -52,13 +52,13 @@ public class ModulesLoader {
                         module.addPrerequisite(prerequisiteCode);
                     }
                 }
-                modules.add(module);
+                coreModulesArrayList.add(module);
             }
         } catch (FileNotFoundException e) {
             throw new ClassMateException("The core modules file does not exist");
         }
 
-        return modules;
+        return coreModulesArrayList;
     }
 
     public HashMap<String, ArrayList<Module>> loadSpecialisationModules() throws ClassMateException {
@@ -88,6 +88,7 @@ public class ModulesLoader {
 
                 Module module = new Module(moduleCode, moduleName);
                 module.setSemester(semester);
+                module.setModuleType(moduleType);
 
                 if (!prerequisites.equals("None")) {
                     String[] prerequisiteCodes = prerequisites.split("\\|");
@@ -102,5 +103,7 @@ public class ModulesLoader {
         } catch (FileNotFoundException e) {
             throw new ClassMateException("The specialisation modules file does not exist");
         }
+
+        return specialisationMap;
     }
 }

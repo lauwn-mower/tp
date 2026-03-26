@@ -2,6 +2,7 @@ package seedu.classmate;
 import seedu.classmate.commands.Command;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -15,12 +16,15 @@ public class ClassMate {
      */
     public static void main(String[] args) {
         modulesLoader.ensureDataFilesExist();
+        ArrayList<Module> coreModulesList = modulesLoader.loadCoreModules();
+        HashMap<String, ArrayList<Module>> specialisationMap = modulesLoader.loadSpecialisationModules();
+
         ui.showWelcome();
         logger.info("ClassMate application started.");
 
         Scanner in = new Scanner(System.in);
-        Major major = new Major();
-        SpecialisationOverview specOverview = new SpecialisationOverview();
+        Major major = new Major(coreModulesList);
+        SpecialisationOverview specOverview = new SpecialisationOverview(specialisationMap);
         Storage storage = new Storage();
         ArrayList<String> completedModules = storage.load();
 

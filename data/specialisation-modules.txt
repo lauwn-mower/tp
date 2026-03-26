@@ -30,7 +30,7 @@ Space Technology,Elective,Introduction to RF and Microwave Systems,EE3104C,1,PC2
 Space Technology,Elective,Feedback Control Systems,EE3331C,1/2,CG2023
 Space Technology,Elective,Remote Sensing and Analysis with Deep Learning Technique,EE4115,2,EE2211/EE2213|CG2023|MA1508E
 Space Technology,Elective,Embedded Hardware System Design,EE4218,2,CG2028
-Space Technology,Elective,Eyes from above: Guidance, Navigation and Control,EE4314,1,EE2211
+Space Technology,Elective,Eyes from above: Guidance; Navigation and Control,EE4314,1,EE2211
 Space Technology,Elective,Power Electronics for Sustainable Energy Technologies,EE4503,2,EE2022
 Space Technology,Elective,RF Communications,EE4101,1,PC2020
 
@@ -42,7 +42,7 @@ Industry 4.0,Elective,Advanced Control Systems,EE4302,1/2,Check with your facult
 Industry 4.0,Elective,Control System Design and Simulation,EE4307,1/2,Check with your faculty
 Industry 4.0,Elective,Fuzzy Logic and Neuro Fuzzy Systems,EE4311,1,Check with your faculty
 Industry 4.0,Elective,Artificial Neural Networks,EE4312,2,Check with your faculty
-Industry 4.0,Elective,Eyes from above: Guidance, Navigation and Control,EE4314,1,EE2211
+Industry 4.0,Elective,Eyes from above: Guidance; Navigation and Control,EE4314,1,EE2211
 Industry 4.0,Elective,Intelligent Industrial Control Systems,EE4315,1/2,Check with your faculty
 Industry 4.0,Elective,Automation,ME3242,1/2,Check with your faculty
 Industry 4.0,Elective,Automation in Manufacturing,ME4262,2,Check with your faculty
@@ -63,7 +63,7 @@ Robotics,Elective,Autonomous Robot Systems,EE4308,2,EE3331C/ME3142/ME2142/RB2203
 Robotics,Elective,Robot Perception,EE4309,1,EE4704/EE3731C
 Robotics,Elective,Fuzzy Logic and Neuro Fuzzy Systems,EE4311,1,Check with your faculty
 Robotics,Elective,Artificial Neural Networks,EE4312,2,Check with your faculty
-Robotics,Elective,Eyes from above: Guidance, Navigation and Control,EE4314,1,EE2211
+Robotics,Elective,Eyes from above: Guidance; Navigation and Control,EE4314,1,EE2211
 Robotics,Elective,Human-Robot Interaction,EE4705,1,EE2211/EE2213|EE3331C/ME3142/ME2142/EE3305/ME3243/RB2203
 Robotics,Elective,Sensors and Actuators,ME2143,1,ME2104
 Robotics,Elective,Soft Robotics,ME4242,1,Check with your faculty

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Module {
     private String moduleCode;
     private String moduleName;
+    private String moduleType;
     private ArrayList<String> prerequisites;
     private int units;
     private String semester;
@@ -28,6 +29,7 @@ public class Module {
         }
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
+        this.moduleType = "Core";
         this.prerequisites = new ArrayList<>();
         this.units = 4;
         this.semester = "1/2";
@@ -141,6 +143,14 @@ public class Module {
      */
     public String getModuleCode() {
         return this.moduleCode;
+    }
+
+    public String getModuleType() {
+        return moduleType;
+    }
+
+    public void setModuleType(String moduleType) {
+        this.moduleType = moduleType;
     }
 
     /**

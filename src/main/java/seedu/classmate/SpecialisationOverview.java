@@ -1,6 +1,7 @@
 package seedu.classmate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Represents an overview of all available CEG specialisations.
@@ -19,13 +20,12 @@ public class SpecialisationOverview {
      * Internet of Things, Advanced Electronics, Space Technology,
      * Industry 4.0, and Robotics.
      */
-    public SpecialisationOverview() {
+    public SpecialisationOverview(HashMap<String, ArrayList<Module>> specialisationMap) {
         specs = new ArrayList<>();
-        specs.add(new Specialisation("Internet of Things"));
-        specs.add(new Specialisation("Advanced Electronics"));
-        specs.add(new Specialisation("Space Technology"));
-        specs.add(new Specialisation("Industry 4.0"));
-        specs.add(new Specialisation("Robotics"));
+
+        for (String specName : specialisationMap.keySet()) {
+            specs.add(new Specialisation(specName, specialisationMap.get(specName)));
+        }
     }
 
     /**

@@ -16,14 +16,8 @@ public class Major {
      * Constructs a {@code Major} object and initializes list
      * of core modules required for CEG major.
      */
-    public Major() {
-        this.coreModules = new ArrayList<>();
-        try {
-            this.coreModules = ModulesLoader.loadCoreModules();
-
-        } catch (ClassMateException c) {
-            System.err.println(c.getMessage());
-        }
+    public Major(ArrayList<Module> coreModules) {
+        this.coreModules = coreModules;
     }
 
     /**
