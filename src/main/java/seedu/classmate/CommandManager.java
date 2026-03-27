@@ -16,7 +16,6 @@ import seedu.classmate.commands.CheckPrereqStatusCommand;
 import seedu.classmate.commands.CheckProfileCommand;
 import seedu.classmate.commands.SetSpecializationCommand;
 
-
 import java.util.ArrayList;
 
 public class CommandManager {
