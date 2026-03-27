@@ -9,6 +9,8 @@ import java.util.HashMap;
 public class ModulesLoader {
     private static final String CORE_MODULES_PATH = "./data/core-modules.txt";
     private static final String SPECIALISATION_MODULES_PATH = "./data/specialisation-modules.txt";
+    private static final int NUMBER_OF_TOKENS_IN_CORE_MODULE_FILE_LINE = 4;
+    private static final int NUMBER_OF_TOKENS_IN_SPECIALISATION_MODULE_FILE_LINE = 6;
 
     public void ensureDataFilesExist() throws ClassMateException {
         File coreModulesFile = new File(CORE_MODULES_PATH);
@@ -36,7 +38,9 @@ public class ModulesLoader {
                 }
 
                 String[] tokens = line.split(",");
-                // assert statement
+
+                assert tokens.length == NUMBER_OF_TOKENS_IN_CORE_MODULE_FILE_LINE : "The line in " +
+                        "core-modules.txt is invalid: " + line;
 
                 String moduleName = tokens[0];
                 String moduleCode = tokens[1];
@@ -75,7 +79,8 @@ public class ModulesLoader {
                 }
 
                 String[] tokens = line.split(",");
-                // assert statement
+                assert tokens.length == NUMBER_OF_TOKENS_IN_SPECIALISATION_MODULE_FILE_LINE : "The line in " +
+                        "specialisation-modules.txt is invalid: " + line;
 
                 String specialisationName = tokens[0];
                 String moduleType = tokens[1];

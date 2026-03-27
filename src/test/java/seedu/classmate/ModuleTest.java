@@ -38,7 +38,6 @@ class ModuleTest {
         assertEquals("CS1010 has no prerequisites.", module.toStringPrerequisites());
     }
 
-
     @Test
     void addPrerequisite_validInput_added() {
         Module module = new Module("CS2113", "Software Engineering & OOP");
