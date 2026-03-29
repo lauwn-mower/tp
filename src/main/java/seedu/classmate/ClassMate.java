@@ -15,7 +15,7 @@ public class ClassMate {
      * Main entry-point for the java.classmate.Classmate application.
      */
     public static void main(String[] args) {
-        modulesLoader.ensureDataFilesExist();
+        //modulesLoader.ensureDataFilesExist();
         ArrayList<Module> coreModulesList = modulesLoader.loadCoreModules();
         HashMap<String, ArrayList<Module>> specialisationMap = modulesLoader.loadSpecialisationModules();
 
@@ -26,6 +26,8 @@ public class ClassMate {
         Major major = new Major(coreModulesList);
         SpecialisationOverview specOverview = new SpecialisationOverview(specialisationMap);
         Storage storage = new Storage();
+        UserProfile userProfile = new UserProfile();
+
         ArrayList<String> completedModules = storage.load();
 
         boolean isExit = false; // Flag to determine whether to exit Program
@@ -44,7 +46,7 @@ public class ClassMate {
             logger.info("User input: " + input);
 
             try {
-                Command command = Parser.parse(input, completedModules, storage);
+                Command command = Parser.parse(input, completedModules, storage, userProfile);
                 command.executeCommand(major, ui, specOverview);
 
                 isExit = command.isExit();
