@@ -4,6 +4,7 @@ ClassMate is a CLI-based chatbot that assists NUS UG CEG students with timetable
 
 * [Quick Start](#quick-start)
 * [Features](#features)
+  * [Viewing help: `help`](#Help on application usage: `help`)
   * [Viewing CEG graduation requirements: `viewGradReqs`](#viewing-major-requirements-viewgradreqs)
   * [Viewing module info: `viewModuleInfo`](#viewing-module-info-viewmoduleinfo)
   * [Checking module availability: `queryModuleAvailability`](#checking-module-availability-querymoduleavailability)
@@ -39,6 +40,14 @@ Format: `help`
 
 Examples:
 * `help`
+
+Expected output:
+``` 
+Available commands:
+- help: Viewing help
+- viewGradReqs: Print CEG graduation requirements
+... Other commands
+```
 
 ### Viewing major requirements: `viewGradReqs`
 
