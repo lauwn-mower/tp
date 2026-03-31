@@ -6,6 +6,7 @@ import seedu.classmate.Major;
 import seedu.classmate.Module;
 import seedu.classmate.SpecialisationOverview;
 import seedu.classmate.Ui;
+import java.util.ArrayList;
 
 /**
  * Represents a command that displays information about a specified module.
@@ -13,14 +14,14 @@ import seedu.classmate.Ui;
 public class PrintModuleInfoCommand extends Command {
 
     private final String moduleCode;
-    private final java.util.ArrayList<String> completedModules;
+    private final ArrayList<String> completedModules;
 
     /**
-     * Constructs a {@code PrintModuleInfoCommand} with the givne module code.
+     * Constructs a {@code PrintModuleInfoCommand} with the given module code.
      *
      * @param args The module code entered by the user.
      */
-    public PrintModuleInfoCommand(String args, java.util.ArrayList<String> completedModules) {
+    public PrintModuleInfoCommand(String args, ArrayList<String> completedModules) {
         this.moduleCode = args.trim().toUpperCase();
         this.completedModules = completedModules;
     }
