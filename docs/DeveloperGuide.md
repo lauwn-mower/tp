@@ -86,12 +86,31 @@ This sequence diagram illustrates how ClassMate processes a user command from ra
 - The 'Parser' is responsible only for preprocessing and validation of raw input.
 - The 'CommandManager' centralises command creation, ensuring command selection logic is kept in one place.
 - Each concrete command encapsulates its own behavior, ensuring the system is modular and easy to extend.
-- Error handling is performed early so invalid input does not propagate further into the application.
+- Error handling is performed early, so invalid input does not propagate further into the application.
 
+### Domain and Data Layer
+The domain/data layer stores and provides the relevant CEG data used by ClassMate.
+It consists of classes such as `Module`, `Major`, `Specialisation`, `SpecialisationOverview`, `UserProfile`.
+These classes are responsible for representing the module information, course structure, specialisation details, and user's academic progress respectively.
+They provide operations for querying module availability, prerequisite relationships, specialisation information, and completed modules.
+It also provides methods to retrieve and update user profile information, such as completed modules and prerequisites.
+
+#### Responsibility of key classes
+- `Module`: Represents an individual module with attributes like code, name, units, semester, prerequisites, and whether it is available for the user.
+- `Major`: Represents the CEG major with a list of core modules and specialisations, and supports module lookup within the major.
+- `Specialisation`: Represents a specialisation with its description and a list of core modules, elective modules, and elective requirements.
+- `SpecialisationOverview`: Manages the list of specialisations and provides access to specialisation details.
+- `UserProfile`: Represents the user's academic progress, including completed modules and selected specialisations.
+
+#### Design considerations
+- The domain layer is separated from command parsing and UI rendering to ensure Single Responsibility Principle.
+- Data classes provide reusable operations for multiple commands, thus avoiding duplicating logic.
+- This structure enables the application to be easily extended with new features and data types.
 
 ## **Implementation of Features**
 
 ### **Viewing Module Information**
+
 <Uses `Parser`, `ViewModuleInfoCommand`, `Module`, `Major`, `SpecialisationOverview`, `Ui`>
 
 The `viewModuleInfo` feature displays a module's code, name, units, semester, prerequisites and whether the user 
@@ -119,7 +138,9 @@ The `viewPrereqs` feature displays a module’s prerequisite structure as a tree
 
 ### **Viewing Specialisations**
 
-<Uses `Parser`, `ViewSpecialisationsCommand`, `Ui`, `Specialisation`, `SpecialisationOverview`>
+![Viewing Specialisations Sequence Diagram](resources/viewSpecialisationsSequenceDiagram.png)
+
+<Uses `ClassMate`, `Parser`, `CommandManager`, `viewSpecialisationsCommand`, `SpecialisationOverview`, `Ui`>
 
 The `viewSpecialisations` command displays the names of the specialisations and their corresponding indices.
 The user is suggested to enter `viewSpecialisationInfo SPECIALISATION_INDEX`, to know more about a particular 
@@ -139,21 +160,24 @@ specialisation modules information by `ModulesLoader`.
 
 ### **Viewing Specialisation Information**
 
-<Uses `Parser`, `SpecialisationInfoCommand`, `Ui`, `Specialisation`, SpecialisationOverview`>
+![Viewing Specialisation Info Sequence Diagram](resources/viewSpecialisationInfoSequenceDiagram.png)
+
+<Uses `ClassMate`, `Parser`, `CommandManager`, `SpecialisationInfoCommand`, `Ui`, `SpecialisationOverview`, 
+`Specialisation`, `Ui`>
 
 The `viewSpecialisationInfo` command allows the user to get more details about a particular specialisation. Details
 include the description, core modules, elective modules and elective module requirement.
 
 **Execution Flow:**
-- User inputs `viewSpecialisationInfo`
-- `Parser` identifies the command word and `CommandManager` creates an instance of `SpecialisationInfoCommand`.
+- User inputs `viewSpecialisationInfo <NUMBER>`
+- `Parser` identifies the command word and argument - `NUMBER`. `CommandManager` creates an instance of 
+- `SpecialisationInfoCommand`. 
 - `ClassMate` calls the `executeCommand` method of the `SpecialisationInfoCommand` object, which calls the
-  `getSpecialisationDetails` method of the `SpecialisationOverview` class, with an argument which is the specialisation
-  number that the user is interested in.
+  `getSpecialisationDetails` method of the `SpecialisationOverview` class, with an argument `NUMBER`.
 - An object, `spec` of the `Specialisation` class is returned. `spec` is passed as an argument to the 
   `showAllSpecialisations` method of the `Ui`. 
-- The specialisation name, description is displayed. Next, `getSpecialisationCoreModules` and 
-  `getSpecialisationElectiveModules` methods are called to obtain the details of the individual modules and displayed.
+- The getter methods for the name, description, core modules, elective requirements and elective modules of the specialisation
+  are called and the respective information is displayed.
 
 **Core Logic:**
 - If the user provides a non-integer input or an integer that is out of the range 1 - 5, an exception is thrown to 
