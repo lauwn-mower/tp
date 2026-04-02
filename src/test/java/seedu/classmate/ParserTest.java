@@ -65,14 +65,14 @@ public class ParserTest {
     }
 
     @Test
-    public void parseValidCommandWithMixedCase() {
+    public void parse_ValidCommandWithMixedCase() {
         String userInput = "ViEwPrErEqS Cs2113";
         Command output = Parser.parse(userInput, completedModules, storage, userProfile);
         assertInstanceOf(PrereqCommand.class, output, "Output is of type PrereqCommand");
     }
 
     @Test
-    public void parseValidCommandWithInvalidArgument_throwsException() {
+    public void parse_ValidCommandWithInvalidArgument_throwsException() {
         String userInput = "viewprereqs Cs211";
         Command command = Parser.parse(userInput, completedModules, storage, userProfile);
 
@@ -83,7 +83,7 @@ public class ParserTest {
     }
 
     @Test
-    public void parseExactValidCommandWithInvalidArgument_throwsException() {
+    public void parse_ExactValidCommandWithInvalidArgument_throwsException() {
         String userInput = "viewPreReqs Cs211";
         Command command = Parser.parse(userInput, completedModules, storage, userProfile);
 
@@ -93,9 +93,8 @@ public class ParserTest {
                 "Error message informs the user that the module is not found");
     }
 
-
     @Test
-    public void parseInvalidCommandWithMixedCase() {
+    public void parse_InvalidCommandWithMixedCaseArgument_throwsException() {
         String userInput = "aCommand Cs2113";
         ClassMateException exception = assertThrows(ClassMateException.class,
                 () -> Parser.parse(userInput, completedModules, storage, userProfile));
