@@ -184,6 +184,37 @@ include the description, core modules, elective modules and elective module requ
   alert the user.
 
 
+### **Checking Prerequisite Completion Status**
+<Uses `Parser`, `CommandManager`, `CheckPrereqStatusCommand`, `Major`, `Module`, `Ui`>
+
+The `checkPrereqStatus` feature shows which prerequisites for a module the user has completed and which are outstanding.
+
+**Execution Flow:**
+1. User inputs `checkPrereqStatus MODULE_CODE`.
+2. `Parser` extracts the command word and module code argument.
+3. `CommandManager` creates a `CheckPrereqStatusCommand` with the module code and completed modules list.
+4. `executeCommand` calls `major.findModule(moduleCode)` to retrieve the module.
+5. The command iterates over the module's prerequisites and checks each against `completedModules`.
+6. Results are printed showing `[DONE]` or `[TODO]` for each prerequisite.
+
+The sequence diagram below illustrates how the components interact when `checkPrereqStatus CS2113` is executed:
+
+![checkPrereqStatus Sequence Diagram](resources/checkPrereqStatusSequenceDiagram.png)
+
+**Design Considerations:**
+- `completedModules` is stored as an `ArrayList` for simplicity. An alternative `HashSet` would give O(1) lookup but `ArrayList` is sufficient given the small number of modules a student completes.
+
+### **Marking Modules as Done**
+<Uses `MarkDoneCommand`, `Storage`, `Major`>
+
+The `markDone` feature allows users to mark a module as completed. The completed module is added to the `completedModules` list and saved to disk via `Storage` so it persists across sessions.
+
+### **Querying Module Availability**
+<Uses `QueryModuleAvailabilityCommand`, `Module`>
+
+The `queryModuleAvailability` feature checks if a module is offered in a given semester (sem1 or sem2) by calling `module.checkAvailability(semester)`. The result is printed directly to the user.
+
+
 ## **Appendix: Requirements**
 ### **Product scope**
 Target user profile:
@@ -216,36 +247,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-
-### **Checking Prerequisite Completion Status**
-<Uses `Parser`, `CommandManager`, `CheckPrereqStatusCommand`, `Major`, `Module`, `Ui`>
-
-The `checkPrereqStatus` feature shows which prerequisites for a module the user has completed and which are outstanding.
-
-**Execution Flow:**
-1. User inputs `checkPrereqStatus MODULE_CODE`.
-2. `Parser` extracts the command word and module code argument.
-3. `CommandManager` creates a `CheckPrereqStatusCommand` with the module code and completed modules list.
-4. `executeCommand` calls `major.findModule(moduleCode)` to retrieve the module.
-5. The command iterates over the module's prerequisites and checks each against `completedModules`.
-6. Results are printed showing `[DONE]` or `[TODO]` for each prerequisite.
-
-The sequence diagram below illustrates how the components interact when `checkPrereqStatus CS2113` is executed:
-
-![checkPrereqStatus Sequence Diagram](resources/checkPrereqStatusSequenceDiagram.png)
-
-**Design Considerations:**
-- `completedModules` is stored as an `ArrayList` for simplicity. An alternative `HashSet` would give O(1) lookup but `ArrayList` is sufficient given the small number of modules a student completes.
-
-### **Marking Modules as Done**
-<Uses `MarkDoneCommand`, `Storage`, `Major`>
-
-The `markDone` feature allows users to mark a module as completed. The completed module is added to the `completedModules` list and saved to disk via `Storage` so it persists across sessions.
-
-### **Querying Module Availability**
-<Uses `QueryModuleAvailabilityCommand`, `Module`>
-
-The `queryModuleAvailability` feature checks if a module is offered in a given semester (sem1 or sem2) by calling `module.checkAvailability(semester)`. The result is printed directly to the user.
 
 ## **Appendix C: Non-Functional Requirements**
 
