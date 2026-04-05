@@ -50,23 +50,23 @@ public class Ui {
     }
 
     public static void showHelp() {
-        System.out.println("Available commands:\n" +
-                "- help: " +
-                "Viewing help\n" +
-                "- viewGradReqs: " +
-                "Print CEG graduation requirements\n" +
-                "- viewPrereqs MODULE_CODE: " +
-                "View the prerequisite tree of a specific module\n" +
-                "- viewModuleInfo MODULE_CODE: " +
-                "Show details for a specific module\n" +
-                "- queryModuleAvailability MODULE_CODE SEM<1/2>: " +
-                "Check if a module MODULE_CODE is available in a certain semester SEM<1/2>\n" +
-                "- viewSpecialisations: " +
-                "View list of all CEG specialisations\n" +
+        System.out.println("""
+                Available commands:
+                - help: Viewing help
+                - bye: Exit the application
+                - viewGradReqs: Print CEG graduation requirements
+                - viewPrereqs MODULE_CODE: View the prerequisite tree of a specific module
+                - viewModuleInfo MODULE_CODE: Show details for a specific module
+                - queryModuleAvailability MODULE_CODE SEM<1/2>: Check if a module MODULE_CODE is available in a certain semester SEM<1/2>
+                - viewSpecialisations: View list of all CEG specialisations
+                - viewSpecialisationInfo SPECIALISATION_INDEX: View specific requirements for a specialisation. See viewSpecialisations for index
+                - checkPrereqStatus MODULE_CODE: Check prereq completion status
                 
-                "- checkPrereqStatus MODULE_CODE: Check prereq completion status\n" +
-                "- viewSpecialisationInfo SPECIALISATION_INDEX: " +
-                "View specific requirements for a specialisation. See viewSpecialisation for index");
+                --- Profile & Progress Tracking ---
+                - markDone MODULE_CODE: Mark a specific module as completed
+                - viewDone: View a list of all your completed modules
+                - setSpecialisation NAME: Add an academic specialisation to your profile (You can select up to 2)
+                - checkProfile: View your comprehensive academic profile, including remaining major core and specialisation progress""");
         printLine();
     }
 
