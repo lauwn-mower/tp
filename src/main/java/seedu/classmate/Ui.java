@@ -9,10 +9,16 @@ import java.util.ArrayList;
 public class Ui {
     private final java.util.Scanner in;
 
+    /**
+     * Constructs a {@code Ui} object and initializes the scanner to read from standard input.
+     */
     public Ui() {
         this.in = new java.util.Scanner(System.in);
     }
 
+    /**
+     * Prints a standardized separator line to the console to visually group output.
+     */
     public static void printLine() {
         System.out.println("_".repeat(30));
     }
@@ -31,6 +37,9 @@ public class Ui {
         return null; // Signal the main loop to break
     }
 
+    /**
+     * Displays the application's welcome logo and initial greeting to the user.
+     */
     public void showWelcome() {
         String logo = "  ____ _               __  __       _\n"
                 + " / ___| | __ _ ___ ___|  \\/  | __ _| |_ ___\n"
@@ -44,11 +53,17 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Displays the farewell message when the user exits the application.
+     */
     public static void showGoodbye() {
         System.out.println("Goodbye! Happy course planning!");
         printLine();
     }
 
+    /**
+     * Prints list of available commands and their descriptions to guide the user.
+     */
     public static void showHelp() {
         System.out.println("""
                 Available commands:
@@ -154,7 +169,10 @@ public class Ui {
     // @@author lauwn-mower
     // Helper methods for CheckProfile
     /**
-     * Prints the user's completed modules and remaining core major requirements.
+     * Prints the user's completed modules alongside the remaining core major requirements.
+     *
+     * @param completed          A list of module codes the user has successfully completed.
+     * @param remainingMajorCore A list of major core {@code Module} objects the user has yet to clear.
      */
     public void showBasicProfile(ArrayList<String> completed, ArrayList<Module> remainingMajorCore) {
         printLine();
@@ -183,7 +201,12 @@ public class Ui {
     }
 
     /**
-     * Prints the progress for a single specialisation, handling the elective counting logic.
+     * Prints the completion progress for a single specialisation, tracking both core and elective requirements.
+     *
+     * @param spec                    The {@code Specialisation} currently being tracked.
+     * @param remainingCore           A list of core {@code Module} objects remaining for this specialisation.
+     * @param remainingElectives      A list of available elective {@code Module} options the user can still take.
+     * @param completedElectivesCount The integer count of specialisation electives the user has already cleared.
      */
     public void showSpecialisationProgress(Specialisation spec, ArrayList<Module> remainingCore,
                                            ArrayList<Module> remainingElectives, int completedElectivesCount) {
