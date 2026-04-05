@@ -108,7 +108,6 @@ public class Ui {
     }
 
     //@@author VinayVR26
-
     /**
      * Displays all available specialisations to the user. Each specialisation is printed with a corresponding
      * number that can be used by the user to select and view more details about a specific specialisation.
@@ -149,6 +148,5 @@ public class Ui {
         }
         printLine();
     }
-
     //@@author
 }
