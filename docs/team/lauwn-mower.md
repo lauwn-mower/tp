@@ -14,11 +14,16 @@ ClassMate is a CLI-based course planning assistant for NUS CEG students.
     * Developed Progress Tracker feature which allows users to view a list of their completed and incomplete modules for both their major and specialisations
     * Added removeSpecialisationCommand as a complement to setSpecialisationCommand
     * Contributed test code to `ModuleTest`, `UiTest`, `CheckProfileCommandTest`, `SetSpecialisationCommandTest`, `RemoveSpecialisationCommandTest`
-      
-* **User Guide contribution:**
-    * Authored v1.0 User Guide
-    * TODO: Update UG with v2.1 implementations
 
+---
+* **User Guide contribution:**
+    * Authored v1.0 User Guide layout and core command instructions
+    * Updated the v2.1 User Guide
+         * Documented UserProfile suite including `checkProfile`, `setSpecialisation`, `removeSpecialisation`
+         * Added a Table Of Contents and categorised features instead of listing all features at the onset
+         * Updated Command Summary table to include all features as of v2.1
+
+---
 * **Developer Guide contribution:**
     * Authored program architecture diagram for v2.1 (see Fig. 1) to follow Model-Controller-View principle
     * Authored table of User Stories (see Fig. 2)
@@ -27,7 +32,7 @@ ClassMate is a CLI-based course planning assistant for NUS CEG students.
     * Documented the design considerations for the Academic Progress Tracker and its implementation using set-theory logic.
  
 **Fig. 1: Architecture Diagram as of ClassMate v2.1**
-![Architecture Diagram](docs/resources/ArchitectureDiagram_v2.png)
+![Architecture Diagram](../resources/ArchitectureDiagram_v2.1.png)
 
 **Fig. 2: Table of User Stories** 
 | Priority | As a ...                                  | I want to ...                                 | So that I can ...                                                                 |
@@ -44,7 +49,7 @@ ClassMate is a CLI-based course planning assistant for NUS CEG students.
 | `*`      | user wanting non-core modules             | view non-core modules using keywords          | find interesting electives outside of my primary major                            |
 | `*`      | user easily overwhelmed by info           | view modules filtered by level or subject     | narrow down my choices to suit my current year of study                           |
 
-
+---
 * **Project Management contribution:**    
     * Updated shared GoogleDoc to track weekly tasks and happenings
     * Authored a workflow for teammates to follow [Team-GoogleDoc-Workflow](https://docs.google.com/document/d/1lDx2Q-6_G2kFYOSqNSmqUyn80Z25JdtKvQ5ZFfafY78/edit?tab=t.wf6jpciy2lio)
