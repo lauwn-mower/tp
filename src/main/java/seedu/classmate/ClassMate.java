@@ -33,10 +33,6 @@ public class ClassMate {
         boolean isExit = false; // Flag to determine whether to exit Program
 
         while (!isExit) {
-            /* TODO: to let input reading be handled by Parser class
-             *    Alternatively, have a CommandManager to detect commandWord
-             *    and return new XCommand subclasses
-            */
             String input = ui.readCommand();
 
             // Guard clause to check for empty input
@@ -48,6 +44,7 @@ public class ClassMate {
             logger.info("User input: " + input);
 
             try {
+                // Delegate to Parser to identify command and execute command
                 Command command = Parser.parse(input, completedModules, storage, userProfile);
                 command.executeCommand(major, ui, specOverview);
 
