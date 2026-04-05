@@ -12,7 +12,8 @@ import java.util.logging.Logger;
 
 /**
  * Represents a command that displays the user's academic profile.
- * This includes their selected specialization and a list of completed modules.
+ * This includes their completed modules, remaining major core modules, and detailed
+ * progress tracking for their selected specialisation(s).
  */
 public class CheckProfileCommand extends Command {
 
@@ -31,7 +32,10 @@ public class CheckProfileCommand extends Command {
     }
 
     /**
-     * Executes the command by printing the user's specialization and completed modules.
+     * Executes the command to evaluate and print the user's academic progress.
+     * It calculates the remaining major core requirements and delegates the
+     * specialisation progress calculation to a helper method, using the {@code Ui}
+     * component for output formatting.
      *
      * @param major                   The Major instance (unused).
      * @param ui                      The Ui handler.
@@ -43,21 +47,9 @@ public class CheckProfileCommand extends Command {
     // @@author
 
         // @@author lauwn-mower
-        /*
-         * Review CheckProfile command:
-         * command to additionally show a list of uncompleted modules.
-         * implementation: import CEG module list from major.getCoreModules()
-         *                 create new ArrayList of incomplete modules
-         *                  create a progress tracker via Ui
-         *                  pass in userprofile, remaining major and remaining spec modules
-         *                  for spec elective modules, tell user how many completed
-         *                      and show options as to what else they can do
-         */
-
-        // settle completed major modules first
         ArrayList<String> completedModules = userProfile.getUserCompletedModules();
 
-        // calculate remaining modules
+        // Calculate remaining CEG major modules
         ArrayList<Module> remainingMajorModules = new ArrayList<>();
         for (seedu.classmate.Module m : major.getCoreModules()) {
             if (!completedModules.contains(m.getModuleCode())) {
@@ -67,9 +59,7 @@ public class CheckProfileCommand extends Command {
 
         ui.showBasicProfile(completedModules, remainingMajorModules);
 
-        // settle spec modules
-        // first check if spec is empty
-        // else, show specs and modules yet to complete
+        // Calculate remaining specialisation modules
         ArrayList<String> userSpecialisations = userProfile.getUserSpecialisations();
 
         if (userSpecialisations.isEmpty()) {
@@ -94,7 +84,13 @@ public class CheckProfileCommand extends Command {
     }
 
     /**
-     * Helper method to calculate the progress for a specific specialisation.
+     * Calculates the completion status of core and elective modules for a specific specialisation.
+     * It tracks how many electives have been completed and filters out completed core requirements,
+     * delegating the final presentation to the {@code Ui} class.
+     *
+     * @param spec           The {@code Specialisation} object to evaluate progress against.
+     * @param completedCodes The list of module codes the user has successfully completed.
+     * @param ui             The {@code Ui} handler responsible for formatting and displaying the progress.
      */
     private void calculateAndShowSpecProgress(Specialisation spec, ArrayList<String> completedCodes, Ui ui) {
         // Calculate remaining Core modules
