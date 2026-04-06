@@ -43,8 +43,11 @@ public class MarkDoneCommand extends Command {
             throw new ClassMateException("Please provide a module code. Format: markDone <MODULE_CODE>");
         }
 
-        // Guard clause to check if module is not under Major
+        // Guard clause to check if module is not under Major or specialisation
         Module module = major.findModule(moduleCode);
+        if (module == null) {
+            module = specOverview.findSpecialisationModule(moduleCode);
+        }
         if (module == null) {
             throw new ClassMateException("Module " + moduleCode + " not found in the curriculum.");
         }
