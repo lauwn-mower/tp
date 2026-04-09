@@ -59,7 +59,7 @@ public class CheckPrereqStatusCommand extends Command {
         }
 
         if (module == null) {
-            throw new ClassMateException("Module " + moduleCode + " not found");
+            throw new ClassMateException("Module not found: " + moduleCode);
         }
 
         ArrayList<String> prerequisites = module.getPrerequisites();
