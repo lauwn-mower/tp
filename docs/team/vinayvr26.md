@@ -41,9 +41,10 @@ The user interacts with it using a CLI. It is written in Java.
 * **Contributions to team tasks:**
    * When the application transitioned to using the `ModulesLoader` class to load information, many test cases written 
      by my teammates did not work. I helped to fix them to ensure that all test cases continued to pass.
-   * Added logic to `command` classes to ensure that a module is checked if it belongs to the `Specialisation` class, 
-     and only if this check fails, does the application output that the module is not found. (This check was missing,
-     causing legitimate modules that only belonged to the `Specialisation` class to be flagged as not found)
+   * Added logic to `QueryModuleAvailabilityCommand` and `CheckPrereqStatusCommand` classes to ensure that every module
+     code is checked to see if it belongs to the `Specialisation` class, and only if this check fails, does the 
+     application output that the module is not found. (This check was missing, causing legitimate modules that only 
+     belonged to the `Specialisation` class to be flagged as not found)
    * Made JavaDoc comments clearer for methods, that belonged to my teammates
    * Modified other classes that were not created by me - `ClassMate`, `Major`, `Module` to incorporate the changes when
      I created the `ModulesLoader` class to load data, to ensure the loading of data was fully incorporated with all
