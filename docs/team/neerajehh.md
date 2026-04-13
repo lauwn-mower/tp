@@ -50,13 +50,16 @@ Given below are my contributions to the project.
 * **Contributions to the DG**:
   * Added UML sequence diagram for `checkPrereqStatus` illustrating how components interact when the command is executed.
   * Added UML sequence diagram for `markDone` (v2.1) illustrating the full flow from user input to prerequisite validation to storage persistence.
-  * Wrote the Storage component design section including file management responsibilities, startup and update data flow sequences, and design considerations (exception propagation, encapsulation of file paths, overwrite-on-save strategy).
-  * Added implementation walkthrough and design considerations for `checkPrereqStatus`, `markDone`, `viewDone`, and `Storage`.
+  * Wrote the entire Storage component design section — the most technically detailed section in the DG — covering file management, startup/update data flow, and 3 design considerations.
+  * Added implementation walkthrough and design considerations for `checkPrereqStatus`, `markDone`, `viewDone`, `unmarkDone`, and `Storage`.
+  * Fixed DG typo in architecture description ("applicationc ontrol flow").
+  * Removed 3 unimplemented user stories from DG appendix to keep it accurate.
 
 * **Contributions to team-based tasks**:
-  * Implemented `Storage` class for persistent data saving and loading across sessions.
-  * Fixed checkstyle errors including duplicate imports across multiple files.
-  * Added `@@author` tags to all 9 contributed files to ensure correct RepoSense attribution.
+  * Implemented the entire `Storage` class from scratch — the only persistence layer in the app, handling both completed modules and specialisations across sessions.
+  * Added data corruption guard to `Storage` — validates module codes and specialisation names on load, skipping invalid entries with a warning log (addresses NFR #4).
+  * Fixed checkstyle violations across multiple files to ensure clean CI builds.
+  * Added `@@author` tags to all 9 contributed files for accurate RepoSense attribution.
   * Reviewed and merged PRs from teammates.
 
 * **Review/mentoring contributions**:
