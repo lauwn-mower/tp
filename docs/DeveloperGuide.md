@@ -127,7 +127,7 @@ can take it.
 ### **Viewing Graduation Requirements** 
 <Uses `ViewGradReqsCommand`, `Major`, `ModuleLoader`, `Module`, `Ui`>
 
-The `viewGradReqs` feature allows users to view the full list of core modules required for the CEG Major. This feature relies on the **Data Layer** to populate the Model at startup, ensuring the curriculum remains easily configurable via external text files.
+The `viewGradReqs` feature allows users to view the remaining core modules required for the CEG Major. Completed modules are filtered out, so only outstanding requirements are shown. This feature relies on the **Data Layer** to populate the Model at startup, ensuring the curriculum remains easily configurable via external text files.
 
 ---
 ### **View Module Prerequisite Trees**
@@ -242,6 +242,26 @@ The sequence diagram below illustrates how the components interact when `markDon
 **Design Considerations:**
 - If the module is already in `completedModules`, the command prints a message and returns early to avoid duplicates.
 - `Storage.save()` is called immediately after adding the module to ensure persistence even if the app crashes.
+
+---
+### **Unmarking Modules as Done**
+<Uses `UnmarkDoneCommand`, `UserProfile`, `Storage`, `Ui`>
+
+The `unmarkDone` feature allows users to remove a module from their completed list. This is useful when a module was marked done by mistake.
+
+**Execution Flow:**
+1. The user inputs `unmarkDone MODULE_CODE`.
+2. `Parser` and `CommandManager` instantiate an `UnmarkDoneCommand` with the module code.
+3. The command checks that the module code is non-empty, throwing a `ClassMateException` if it is.
+4. The command calls `userProfile.unmarkModuleDone(moduleCode)`.
+   - The **Model** checks if the module is in `completedModules`. If not, a `ClassMateException` is thrown.
+5. Upon successful removal, the command calls `storage.saveUserProfile(userProfile)` to persist the change.
+6. A success message is displayed to the user.
+
+**Design Considerations:**
+- The command mirrors `markDone` in structure, ensuring consistency across the codebase.
+- `Storage.save()` is called immediately after removal to ensure persistence even if the app crashes.
+
 ---
 ### **Querying Module Availability**
 <Uses `QueryModuleAvailabilityCommand`, `Module`>
@@ -309,7 +329,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | recurring user                            | save my profile and academic history          | avoid the repetitive task of re-entering completed modules                        |
 | `* *`    | student                                   | check my current academic progress            | stay motivated and ensure I am on track for graduation                            |
 | `* *`    | student                                   | remove a module from my completed list        | correct my mistake for marking wrong modules as done                            |
-| `* *`    | student                                   | view modules using keywords                   | find relevant courses even if I do not know the exact module code                 |
 
 
 
