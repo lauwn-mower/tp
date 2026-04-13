@@ -42,7 +42,10 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2113-ay2526-s2.github.io/tp-dashboard/?search=neerajehh)
 
 * **Contributions to the UG**:
-  * Wrote documentation for `viewModuleInfo`, `queryModuleAvailability`, `checkPrereqStatus`, `markDone`, and `viewDone` commands — including command format, examples, expected output, and error cases.
+  * Wrote documentation for `viewModuleInfo`, `queryModuleAvailability`, `checkPrereqStatus`, `markDone`, `viewDone`, and `unmarkDone` commands — including command format, examples, expected output, and error cases.
+  * Updated `viewGradReqs` description to reflect filtering of completed modules.
+  * Fixed `viewSpecialisations` expected output (removed invalid "Others" entry).
+  * Fixed `removeSpecialisation` command summary example.
 
 * **Contributions to the DG**:
   * Added UML sequence diagram for `checkPrereqStatus` illustrating how components interact when the command is executed.
@@ -53,7 +56,7 @@ Given below are my contributions to the project.
 * **Contributions to team-based tasks**:
   * Implemented `Storage` class for persistent data saving and loading across sessions.
   * Fixed checkstyle errors including duplicate imports across multiple files.
-  * Added `@@author` tags to all 6 contributed files to ensure correct RepoSense attribution.
+  * Added `@@author` tags to all 9 contributed files to ensure correct RepoSense attribution.
   * Reviewed and merged PRs from teammates.
 
 * **Review/mentoring contributions**:
