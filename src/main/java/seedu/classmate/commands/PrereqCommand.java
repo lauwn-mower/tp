@@ -19,7 +19,7 @@ public class PrereqCommand extends Command{
      * @param args The module code entered by the user.
      */
     public PrereqCommand(String args) {
-        this.moduleCode = args.trim();
+        this.moduleCode = args.trim().toUpperCase();
     }
 
     /**
